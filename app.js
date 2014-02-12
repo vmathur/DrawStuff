@@ -54,12 +54,12 @@ io.sockets.on('connection', function (socket) {
               console.log('only user in session...');
             }else if(numberOfUsers==2){
               sessions.push(session);
-              socket.emit('friend connect',{username:session[0].user, pic:session[0].pic});
+              socket.emit('friend connect',{username:session[0].user, pic:session[0].pic, pic:session[0].pic, session[0].isKik});
               sessionid++;
               session = [];
               numberOfUsers=0;
               io.sockets.socket(getSocketById(socket.id)).emit('clear');
-              io.sockets.socket(getSocketById(socket.id)).emit('friend connect',{username:user.username});
+              io.sockets.socket(getSocketById(socket.id)).emit('friend connect',{username:user.username, pic:user.pic, isKik:user.isKik});
             }else{
               console.log('this should never show');
             }
@@ -83,9 +83,9 @@ io.sockets.on('connection', function (socket) {
                   kikSession.push(client);
                   sessions.push(kikSession);
                   sessionid++;
-                  io.sockets.socket(getSocketById(socket.id)).emit('friend connect',{username:user.username});
+                  io.sockets.socket(getSocketById(socket.id)).emit('friend connect',{username:user.username, pic:user.pic, isKik:user.isKik});
                   io.sockets.socket(getSocketById(socket.id)).emit('clear');
-                  socket.emit('friend connect',{username:host.user});
+                  socket.emit('friend connect',{username:host.user, pic:user.pic, isKik:user.isKik});
                 }else{
                   socket.emit('error friend', {username:user.targetUser});
                 }
