@@ -54,7 +54,7 @@ io.sockets.on('connection', function (socket) {
               console.log('only user in session...');
             }else if(numberOfUsers==2){
               sessions.push(session);
-              socket.emit('friend connect',{username:session[0].user, pic:session[0].pic, session[0].isKik});
+              socket.emit('friend connect',{username:session[0].user, pic:session[0].pic, iskik:session[0].isKik});
               sessionid++;
               session = [];
               numberOfUsers=0;
