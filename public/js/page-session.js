@@ -7,7 +7,7 @@ App.populator('session', function (page,user) {
       // var $friendpic = $(page).find('.friendpic');
       // var $upload   = $(page).find('.upload');
       // var $save     = $(page).find('.save');
-      // var $chat     = $(page).find('.chat');
+      var $chat     = $(page).find('.chat');
       var $back   = $(page).find('.back');
 
       var url   = 'http://drawstuffz.herokuapp.com';
@@ -44,6 +44,10 @@ App.populator('session', function (page,user) {
         console.log('connected with '+user.username);
         $status.text('Drawing with '+user.username);
         // $friendpic.update(user.pic);
+
+        $chat.on('click',function(){
+          kik.openConversation(user.username);
+        });
       });
 
       $canvas.on('draw', function(event, data){
@@ -110,10 +114,6 @@ App.populator('session', function (page,user) {
       // $save.on('click',function(){
       //   canvas.save();
       // });
-
-      //$chat.on('click',function(){
-      //  kik.openConversation('kikteam');
-      //})
 
       // $upload.on('click',function(){
       //   kik.photo.get(function (photos) {
