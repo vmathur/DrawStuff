@@ -100,7 +100,11 @@ App.populator('session', function (page,user) {
         socket.disconnect();
         socket.removeAllListeners();
         socket.socket.removeAllListeners();
-        App.back(function(){console.log('disconnected');});
+        if(user.invited){
+          App.load('home');
+        }else{
+          App.back(function(){console.log('disconnected');});
+        }
       }
 
       // $save.on('click',function(){
