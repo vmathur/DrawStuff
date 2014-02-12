@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html=manifest="cache.manifest">
+    <head>
+          <title>Draw Stuff</title>
+          <meta name="description" content="Live drawing with friends">
+          <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!--               <link rel="kik-icon" href="/img/my_icon.png">
+ --><!--           <link rel="canonical" href="http://example.com/prod/">
+ -->          <link rel="stylesheet" href="http://cdn.kik.com/app/2.0.0/app.min.css">
+          <link rel="stylesheet" href="/css/styles.css">
+    </head>
+    <body>
+          <div class="app-page home-page" data-page="home">
+              <div class="app-topbar blue">
+                  <div class="app-title">Draw stuff</div>
+              </div>
+
+              <div class="app-content">
+                  <div class="app-section">
+                        <div class="intro">Draw with </div>
+                        <div class= "app-button login kik-sign-in">Kik Friends</div> 
+                        <div class= "app-button login anon-sign-in">Randoms</div>
+                  </div>
+              </div>
+
+          </div>
+
+          <div class="app-page home-page" data-page="session">
+              <div class="app-topbar blue">
+                  <div class="app-button back">Home</div>
+                  <div class="app-title">Draw stuff</div>
+              </div>
+
+              <div class="app-content">
+
+                  <div class="app-section">
+                      <div class="status">Drawing alone</div>
+<!--                       <div class="friendpic"></div>-->                  
+                      </div>
+
+                  <div class="app-section">
+                        <div class="canvas-container">
+                            <canvas id="draw" cornerRadius="10px" width="300" height="300"></canvas>
+                        </div>
+                  </div>
+
+                  <div class="app-section toolbar">
+                      <div class="tools">
+                            <div class= "app-button menu"id="clear">Clear</div>
+                            <div class= "app-button menu">Colour</div>
+                            <div class= "app-button menu">Thickness</div>
+                            <div class="clear"></div>
+                      </div>
+                  </div>
+              </div>
+
+          </div> 
+
+
+          <script src="http://zeptojs.com/zepto.min.js"></script>
+          <script src="http://cdn.kik.com/cards/0.11.2/cards.js"></script>
+          <script src="http://cdn.kik.com/app/2.0.0/app.min.js"></script>
+          <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
+          <script src="http://cdn.kik.com/kik/1.0.0/kik.js"></script>
+          <script src ="js/canvas.js"></script>
+          <script src ="js/data.js"></script>
+          <script src ="js/page-home.js"></script>
+          <script src ="js/page-session.js"></script>
+          <script src ="js/main.js"></script>
+    </body>
+</html>

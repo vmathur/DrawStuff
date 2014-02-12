@@ -1,0 +1,13 @@
+CACHE MANIFEST
+
+#Drawstuff version 1.0.0
+
+#/img/draw.png
+
+http://zeptojs.com/zepto.min.js
+http://cdn.kik.com/cards/0.11.2/cards.js
+http://cdn.kik.com/app/2.0.0/app.min.js
+
+
+NETWORK:
+*
