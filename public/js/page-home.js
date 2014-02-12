@@ -9,6 +9,7 @@ App.populator('home', function (page) {
 
       $anonSignIn.on('click', function(){
         //TODO make pic a silouette of a dude
+
         var userAnom = {'username':randomId, 'pic':null, 'isKik':false, 'invited':false, 'targetUser':null, 'firstTime':firstTime};
         App.load('session',userAnom);
         firstTime=false;

@@ -8,11 +8,12 @@ App.populator('session', function (page,user) {
       // var $upload   = $(page).find('.upload');
       // var $save     = $(page).find('.save');
       var $chat     = $(page).find('.chat');
+      $chat.hide();
       var $back   = $(page).find('.back');
 
-      var url   = 'http://drawstuffz.herokuapp.com';
+      //var url   = 'http://drawstuffz.herokuapp.com';
       //var url =  'http://10.22.213.59:3000';
-      //var url = 'http://10.10.20.172:3000/';
+      var url = 'http://10.10.20.172:3000/';
       //var url = 'http://192.168.0.19:3000/';
 
       var socket;
@@ -40,13 +41,13 @@ App.populator('session', function (page,user) {
           socket.emit('login', user);
       });
 
-      socket.on('friend connect',function(user){
-        console.log('connected with '+user.username);
-        $status.text('Drawing with '+user.username);
+      socket.on('friend connect',function(friend){
+        console.log('connected with '+friend.username);
+        $status.text('Drawing with '+friend.username);
         // $friendpic.update(user.pic);
-
+        $chat.show();
         $chat.on('click',function(){
-          kik.openConversation(user.username);
+          startChat(user, friend);
         });
       });
 
@@ -86,6 +87,7 @@ App.populator('session', function (page,user) {
       });
 
       socket.on('friend disconnected',function(user){
+        $chat.hide();
         $status.text('Drawing alone');
           App.dialog({
                 title: user.username+' left',
@@ -109,6 +111,44 @@ App.populator('session', function (page,user) {
         }else{
           App.back(function(){console.log('disconnected');});
         }
+      }
+
+      function startChat(user,friend){
+        if( kik.hasPermission() && friend.isKik){
+            kik.openConversation(friend.username);
+          }else if( kik.hasPermission() && !friend.isKik){
+            App.dialog({
+                  title: friend.username+' doesn\'t have kik :(',
+                  text: 'You can suggest that they get kik though',
+                  okButton: 'Yeah!',
+                  cancelButton: 'Nah'
+                },function(yeah){
+                if(yeah){
+                  //TODO socket.emit('get kik',user.username);
+                }
+            });          
+          }else{
+            App.dialog({
+                  title: 'Get Kik!',
+                  text: 'Install kik to chat, save pictures and moar!',
+                  okButton: 'Install',
+                  cancelButton: 'Cancel'
+                },function(install){
+                if(install){
+                  var os = kik.utils.platform.os;
+
+                  if (os.ios) {
+                    window.location.href = 'itms-apps://itunes.apple.com/app/kik-messenger/id357218860';
+                  }
+                  else if (os.android) {
+                    window.location.href = 'market://details?id=kik.android';
+                  }
+                  else {
+                    window.location.href = 'http://kik.com';
+                  }
+                }
+            });
+          }
       }
 
       // $save.on('click',function(){
