@@ -17,6 +17,8 @@ app.configure(function(){
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(app.router);
+    app.set( "transports", ["xhr-polling"] );
+    app.set( "polling duration", 10 );
 });
  
 app.configure('development', function(){
