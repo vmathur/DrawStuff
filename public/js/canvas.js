@@ -7,14 +7,28 @@ function Canvas(page){
         dot       : dot,
         save      : save
     };
-    var c;
+    var c, offsetX, offsetY;
+    setOffsets();
+    $(page).on('appLayout appShow appReady', setOffsets);
 
     $(document).ready(function(){
         setCanvas($(page).find('#draw').get(0));
         start();
+        setOffsets();
     });
 
     return funcs;
+
+    function setOffsets() {
+        if (c) {
+            var offset = $(c).offset();
+            offsetX = offset.left;
+            offsetY = offset.top;
+        } else {
+            offsetX = 0;
+            offsetY = 0;
+        }
+    }
 
     function setCanvas(canvas){
       c = canvas;
@@ -103,8 +117,6 @@ function Canvas(page){
         // );
 
         var drawing;
-        var yoffset = 80+canvas.offsetTop;
-        var xoffset = 20;
         
         var lastx;
         var lasty;
@@ -120,8 +132,8 @@ function Canvas(page){
         canvas.addEventListener('touchstart', function(event) {
             event.preventDefault();                 
             
-            lastx = event.touches[0].clientX - xoffset;
-            lasty = event.touches[0].clientY - yoffset;
+            lastx = event.touches[0].clientX - offsetX;
+            lasty = event.touches[0].clientY - offsetY;
             
             var lineColour = setColour("#000000");
             var lineWidth = setWidth(8);
@@ -135,8 +147,8 @@ function Canvas(page){
         canvas.addEventListener('touchmove', function(event) {
             event.preventDefault();                 
             
-            var newx = event.touches[0].clientX - xoffset;
-            var newy = event.touches[0].clientY - yoffset;
+            var newx = event.touches[0].clientX - offsetX;
+            var newy = event.touches[0].clientY - offsetY;
 
             var lineColour = setColour("#000000");
             var lineWidth = setWidth(8);
