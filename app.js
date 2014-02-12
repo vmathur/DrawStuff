@@ -107,7 +107,6 @@ io.sockets.on('connection', function (socket) {
         socket.on('disconnect', function() {
             console.log('user '+user.username+' disconnected!');
             io.sockets.socket(getSocketById(socket.id)).emit('friend disconnected', {username:user.username});
-            if(uesr.isKik)
             if(session.length===1){
               numberOfUsers=0;
               session=[];
