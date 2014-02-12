@@ -14,7 +14,10 @@ App.populator('session', function (page,user) {
       //var url =  'http://10.22.213.59:3000';
       //var url = 'http://10.10.20.172:3000/';
       //var url = 'http://192.168.0.19:3000/';
-
+      io.configure( function() {
+          io.set( "transports", ["xhr-polling"] );
+          io.set( "polling duration", 10 );
+      } );
       var socket;
 
       if(!user.firstTime){
