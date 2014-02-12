@@ -11,9 +11,9 @@ App.populator('session', function (page,user) {
       $chat.hide();
       var $back   = $(page).find('.back');
 
-      //var url   = 'http://drawstuffz.herokuapp.com';
+      var url   = 'http://drawstuffz.herokuapp.com';
       //var url =  'http://10.22.213.59:3000';
-      var url = 'http://10.10.20.172:3000/';
+      //var url = 'http://10.10.20.172:3000/';
       //var url = 'http://192.168.0.19:3000/';
 
       var socket;
