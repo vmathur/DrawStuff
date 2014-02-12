@@ -93,14 +93,14 @@ function Canvas(page){
         var $clear  = $(page).find('#clear');
         var canvas  = getCanvas();
         var context = canvas.getContext("2d");
-        var event = new CustomEvent('draw',{
-            detail: {
-              message: "Canvas drawing at Canvas.start",
-            },
-            bubbles: true,
-            cancelable: true
-          }
-        );
+        // var event = new CustomEvent('draw',{
+        //     detail: {
+        //       message: "Canvas drawing at Canvas.start",
+        //     },
+        //     bubbles: true,
+        //     cancelable: true
+        //   }
+        // );
 
         var drawing;
         var yoffset = 80+canvas.offsetTop;
