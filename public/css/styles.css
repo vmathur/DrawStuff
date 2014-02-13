@@ -11,6 +11,8 @@
 
 .app-section{
 	background: #CFCFCF;
+	margin:8px !important;
+	padding:4px !important;
 }
 
 .app-content .login{
@@ -40,8 +42,14 @@
 	border-radius: 50px;
 }
 
+#draw{
+	display: table;
+    margin: 0 auto;
+}
+
 .app-section .canvs-container{
 	margin: 0 auto;
+
 }
 
 .app-content .app-button .active {
