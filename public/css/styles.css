@@ -2,14 +2,15 @@
 /*.app-title {
 	background: CE0F41;
 }*/
-/*
+
 
 /*.chat{
-	background-image: url(/img/chat.png?inline=1);
+	background-image: url(/img/chat2.png?inline=1);
+	background-size: cover;
 }*/
 
 .app-content{
-		background: #F0F0F0 ;
+	background: #F0F0F0 ;
 }
 
 .app-section{
@@ -24,16 +25,18 @@
 	height: 200px;
 	margin-left: 3%;
 	border-radius: 10px;
-/*	background-image: url(/img/anon.png?inline=1);
-*/}
+/*	background-image: url(/img/anon_small.png?inline=1);
+	background-size: cover;*/
 
-.app-section .login-section{
-	height:100%;
 }
 
-.app-buttoon .login .anon-sign-in{
-/*	background-image: url(/img/anon.png?inline=1);
-*/
+.app-section .login-section{
+	height: inherit;
+}
+
+#kikfriends{
+/*	background-image: url(/img/kikfriends_small.png?inline=1);
+	background-size: cover;
 }
 
 .app-button .login .kik-sign-in{
@@ -72,7 +75,6 @@
 .app-section .canvs-container{
 	margin: 0 auto;
 }
-
 
 .app-content .app-button .active {
 	background: purple;

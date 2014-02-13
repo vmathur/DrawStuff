@@ -5,15 +5,15 @@ App.populator('session', function (page,user) {
       var canvas  = Canvas(page);
       var $status = $(page).find('.status');
       // var $friendpic = $(page).find('.friendpic');
-      // var $upload   = $(page).find('.upload');
-      // var $save     = $(page).find('.save');
+      var $upload   = $(page).find('.thickness_picker');
+      var $save     = $(page).find('.colour_picker');
       var $chat     = $(page).find('.chat');
       $chat.hide();
       var $back   = $(page).find('.back');
 
-      var url   = 'http://drawstuffz.herokuapp.com';
+      //var url   = 'http://drawstuffz.herokuapp.com';
       //var url =  'http://10.22.213.59:3000';
-      //var url = 'http://10.10.20.172:3000/';
+      var url = 'http://10.10.20.172:3000/';
       //var url = 'http://192.168.0.19:3000/';
 
       var socket;
@@ -63,6 +63,20 @@ App.populator('session', function (page,user) {
 
       $back.on('click',function(){
         leave();
+      });
+
+      $save.on('click',function(){
+        canvas.save();
+      });
+
+      $upload.on('click',function(){
+        kik.photo.get(function (photos) {
+          if ( !photos ) {
+              // action cancelled by user
+          } else {
+             canvas.upload(photos);
+          }
+        });
       });
 
       socket.on('update', function (data) {
@@ -153,18 +167,6 @@ App.populator('session', function (page,user) {
           }
       }
 
-      // $save.on('click',function(){
-      //   canvas.save();
-      // });
 
-      // $upload.on('click',function(){
-      //   kik.photo.get(function (photos) {
-      //     if ( !photos ) {
-      //         // action cancelled by user
-      //     } else {
-      //        canvas.upload(photos);
-      //     }
-      //   });
-      // });
       
   });

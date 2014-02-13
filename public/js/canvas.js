@@ -5,7 +5,8 @@ function Canvas(page){
         setWidth  : setWidth,
         update    : update,
         dot       : dot,
-        save      : save
+        save      : save,
+        upload    : upload
     };
     var c, offsetX, offsetY;
     setOffsets();
@@ -92,14 +93,24 @@ function Canvas(page){
     }
 
     function save(){
-        var dataURL = canvas.toDataURL();
-        kik.photo.saveToGallery(dataUrl, function (status) {
+        var dataURL = c.toDataURL();
+        kik.photo.saveToGallery(dataURL, function (status) {
             if (status) {
                 console.log('save succeeded');
             } else {
                 console.log('save failed');
             }
         });
+    }
+
+    function upload(photos){
+        var img = new Image;
+        img.src = photos;
+
+        img.onload = function(){
+        c.getContext("2d").drawImage(img,0,0); // Or at whatever offset you like
+        };
+
     }
 
     function start(){
