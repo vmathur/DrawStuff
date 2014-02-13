@@ -18,7 +18,7 @@
               <div class="app-content">
                   <div class="app-section">
                         <div class="intro">Draw with </div>
-                        <div class= "app-button login kik-sign-in">Kik Friends</div> 
+                        <div class= "app-button login kik-sign-in" id="yo">Kik Friends</div> 
                         <div class= "app-button login anon-sign-in">Randoms</div>
                   </div>
               </div>
@@ -27,19 +27,19 @@
 
           <div class="app-page home-page" data-page="session">
               <div class="app-topbar blue">
-                  <div class="app-button back">Home</div>
+                  <div class="app-button back left" data-back="true"></div>
                   <div class="app-title">Draw stuff</div>
                   <div class="app-button right chat">Chat</div>
               </div>
 
               <div class="app-content">
 
-                  <div class="app-section">
+                  <div class="app-section status">
                       <div class="status">Drawing alone</div>
 <!--                       <div class="friendpic"></div>-->                  
                       </div>
 
-                  <div class="app-section">
+                  <div class="app-section section-canvas">
                         <div class="canvas-container">
                             <canvas id="draw" cornerRadius="10px" width="300" height="300"></canvas>
                         </div>

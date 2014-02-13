@@ -5,14 +5,18 @@
 /*
 .app-content{
 	background: blue;
-}
+}	background-image: url(/img/logo-ios.png?inline=1);
+
 */
 
+.app-content{
+		background: #F8F8F8;
+}
 
 .app-section{
 	background: #CFCFCF;
 	margin:8px !important;
-	padding:4px !important;
+	padding: 4px;
 }
 
 .app-content .login{
@@ -20,12 +24,13 @@
 	color: white;
 	margin-left: 3%;
 	height: 100px;
-	
 	border-radius: 10px;
 }
 
 .toolbar{
 	border-radius: 50px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .tools {
@@ -47,10 +52,15 @@
     margin: 0 auto;
 }
 
+.section-canvas{
+	background: #F8F8F8;
+}
+
 .app-section .canvs-container{
 	margin: 0 auto;
 
 }
+
 
 .app-content .app-button .active {
 	background: purple;
@@ -58,6 +68,3 @@
 }
 
 
-/*.home-page .app-button .menu {
-
-}*/
