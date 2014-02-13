@@ -3,11 +3,10 @@
 	background: CE0F41;
 }*/
 /*
-.app-content{
-	background: blue;
-}	background-image: url(/img/logo-ios.png?inline=1);
 
-*/
+/*.chat{
+	background-image: url(/img/chat.png?inline=1);
+}*/
 
 .app-content{
 		background: #F0F0F0 ;
@@ -22,10 +21,24 @@
 .app-content .login{
 	background: #4f86f0;		
 	color: white;
+	height: 200px;
 	margin-left: 3%;
-	height: 100px;
 	border-radius: 10px;
+/*	background-image: url(/img/anon.png?inline=1);
+*/}
+
+.app-section .login-section{
+	height:100%;
 }
+
+.app-buttoon .login .anon-sign-in{
+/*	background-image: url(/img/anon.png?inline=1);
+*/
+}
+
+.app-button .login .kik-sign-in{
+/*	background-image: url(/img/kikfriend.png?inline=1);
+*/}
 
 .toolbar{
 	border-radius: 50px;
@@ -58,7 +71,6 @@
 
 .app-section .canvs-container{
 	margin: 0 auto;
-
 }
 
 
