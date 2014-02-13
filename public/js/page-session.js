@@ -2,7 +2,7 @@ App.populator('session', function (page,user) {
       console.log('loading session');
 
       var $canvas = $(page).find('#draw');
-      var canvas = Canvas(page);
+      var canvas  = Canvas(page);
       var $status = $(page).find('.status');
       // var $friendpic = $(page).find('.friendpic');
       // var $upload   = $(page).find('.upload');
@@ -27,10 +27,11 @@ App.populator('session', function (page,user) {
   
       if(user.isKik && !user.invited){
         kik.send({
-            title : 'Draw stuff',
-            text  : 'Come draw stuff with me!',
-            //pic   : '/img/draw_stuff_send',
-            data  : {'targetUser':user.username}
+            title     : 'Draw stuff',
+            text      : 'Come draw stuff with me!',
+            //pic     : '/img/draw_stuff_send',
+            noForward :  true,
+            data      : {'targetUser':user.username}
         });
       }
 
@@ -45,8 +46,6 @@ App.populator('session', function (page,user) {
         console.log('connected with '+friend.username);
         $status.text('Drawing with '+friend.username);
         // $friendpic.update(user.pic);
-        // console.log('has hasPermission?' + kik.hasPermission());
-        // console.log('friend hasPermission?' + friend.isKik);
 
         $chat.show();
         $chat.on('click',function(){
@@ -78,10 +77,10 @@ App.populator('session', function (page,user) {
       socket.on('error friend', function (user) {
           $status.text('Drawing alone');
           App.dialog({
-                title: user.username+' may have left',
-                text: 'You can continue drawing alone, or find another buddy',
-                okButton: 'Leave',
-                cancelButton: 'Stay'
+                title        : user.username+' may have left',
+                text         : 'You can continue drawing alone, or find another buddy',
+                okButton     : 'Leave',
+                cancelButton : 'Stay'
               },function(ok){
               if(ok){
                 leave();
@@ -93,10 +92,10 @@ App.populator('session', function (page,user) {
         $chat.hide();
         $status.text('Drawing alone');
           App.dialog({
-                title: user.username+' left',
-                text: 'You can continue drawing alone, or find another buddy',
-                okButton: 'Leave',
-                cancelButton: 'Stay'
+                title        : user.username+' left',
+                text         : 'You can continue drawing alone, or find another buddy',
+                okButton     : 'Leave',
+                cancelButton : 'Stay'
               },function(ok){
               if(ok){
                 leave();
@@ -121,10 +120,10 @@ App.populator('session', function (page,user) {
             kik.openConversation(friend.username);
           }else if( kik.hasPermission() && !friend.isKik){
             App.dialog({
-                  title: friend.username+' doesn\'t have kik :(',
-                  text: 'You can suggest that they get kik though',
-                  okButton: 'Yeah!',
-                  cancelButton: 'Nah'
+                  title        : friend.username+' doesn\'t have kik :(',
+                  text         : 'You can suggest that they get kik though',
+                  okButton     : 'Yeah!',
+                  cancelButton : 'Nah'
                 },function(yeah){
                 if(yeah){
                   //TODO socket.emit('get kik',user.username);
@@ -132,10 +131,10 @@ App.populator('session', function (page,user) {
             });          
           }else{
             App.dialog({
-                  title: 'Get Kik!',
-                  text: 'Install kik to chat, save pictures and moar!',
-                  okButton: 'Install',
-                  cancelButton: 'Cancel'
+                  title        : 'Get Kik!',
+                  text         : 'Install kik to chat, save pictures and moar!',
+                  okButton     : 'Install',
+                  cancelButton : 'Cancel'
                 },function(install){
                 if(install){
                   var os = kik.utils.platform.os;

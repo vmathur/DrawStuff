@@ -13,14 +13,13 @@
 	background: #CFCFCF;
 }
 
-.app-content .app-button .login{
-		background: #4f86f0;		
-		color: white;
-		float:left;
-		margin-left: 3%;
-		height: 100%;
-		width: 50%;
-		border-radius: 50px;
+.app-content .login{
+	background: #4f86f0;		
+	color: white;
+	margin-left: 3%;
+	height: 100px;
+	
+	border-radius: 10px;
 }
 
 .toolbar{
@@ -31,23 +30,25 @@
 	width: 100%;
 }
 
-.app-content .app-button{
-		background: #4f86f0;		
-		color: white;
-		float:left;
-		margin-left: 3%;
-		height: 100%;
-		width: 30%;
-		border-radius: 50px;
+.app-content .menu{
+	background: #4f86f0;		
+	color: white;
+	float:left;
+	margin-left: 3%;
+	height: 100%;
+	width: 30%;
+	border-radius: 50px;
 }
 
 .app-section .canvs-container{
 	margin: 0 auto;
 }
 
-.app-content .app-button.active {
+.app-content .app-button .active {
 	background: purple;
+
 }
+
 
 /*.home-page .app-button .menu {
 

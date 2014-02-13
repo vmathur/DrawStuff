@@ -23,7 +23,7 @@ function Canvas(page){
         if (c) {
             var offset = $(c).offset();
             offsetX = offset.left;
-            offsetY = offset.top;
+            offsetY = offset.top+10;
         } else {
             offsetX = 0;
             offsetY = 0;

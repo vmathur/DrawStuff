@@ -25,8 +25,6 @@ App.populator('home', function (page) {
               firstTime=false;
             }
         });
-        //TODO get rid of below
-        //App.load('session',userKik);
       });      
 
   });
