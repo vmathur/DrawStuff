@@ -107,10 +107,16 @@ function Canvas(page){
         var img = new Image;
         img.src = photos;
 
-        img.onload = function(){
-        c.getContext("2d").drawImage(img,0,0); // Or at whatever offset you like
-        };
+        updateImage(img);
+        
+        drawing = {'type':'image','image':img};
+        $canvas.trigger('draw', {'drawing':drawing});
+    }
 
+    function updateImage(img){
+        img.onload = function(){
+            c.getContext("2d").drawImage(img,0,0); // Or at whatever offset you like
+        };
     }
 
     function start(){
