@@ -54,6 +54,7 @@ App.populator('session', function (page,user) {
       });
 
       $canvas.on('draw', function(event, data){
+          alert(data.drawing.image);
           socket.emit('push', { 'drawing': data.drawing,'user':user.username });
       });
 
@@ -74,13 +75,16 @@ App.populator('session', function (page,user) {
           if ( !photos ) {
               // action cancelled by user
           } else {
-             canvas.upload(photos);
+             canvas.upload(photos[0]);
           }
         });
       });
 
       socket.on('update', function (data) {
           console.log('update');
+          if(data.drawing.type==='imgae'){
+            canvas.updateImage(data.drawing.image);
+          }
           canvas.update(data.drawing)
       });
 

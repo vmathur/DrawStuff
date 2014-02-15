@@ -6,7 +6,8 @@ function Canvas(page){
         update    : update,
         dot       : dot,
         save      : save,
-        upload    : upload
+        upload    : upload,
+        updateImage:updateImage
     };
     var c, offsetX, offsetY;
     setOffsets();
@@ -108,8 +109,7 @@ function Canvas(page){
         img.src = photos;
 
         updateImage(img);
-        
-        drawing = {'type':'image','image':img};
+        var drawing = {'type':'image','image':img};
         $canvas.trigger('draw', {'drawing':drawing});
     }
 
