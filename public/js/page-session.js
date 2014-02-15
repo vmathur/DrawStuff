@@ -54,7 +54,7 @@ App.populator('session', function (page,user) {
       });
 
       $canvas.on('draw', function(event, data){
-          alert(data.drawing.image);
+          //alert(data.drawing.image);
           socket.emit('push', { 'drawing': data.drawing,'user':user.username });
       });
 
