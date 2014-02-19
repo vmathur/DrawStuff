@@ -27,6 +27,9 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 
+currentNumSessions = 0;
+totalNumSessions = 0;
+
 var totalClients =0;
 var currentClients =0;
 var numberOfUsers = 0;
@@ -62,6 +65,8 @@ io.sockets.on('connection', function (socket) {
               numberOfUsers=0;
               io.sockets.socket(getSocketById(socket.id)).emit('clear');
               io.sockets.socket(getSocketById(socket.id)).emit('friend connect',{username:user.username, pic:user.pic, isKik:user.isKik});
+              currentNumSessions++;
+              totalNumSessions++;
             }else{
               console.log('this should never show');
             }
@@ -88,6 +93,8 @@ io.sockets.on('connection', function (socket) {
                   io.sockets.socket(getSocketById(socket.id)).emit('friend connect',{username:user.username, pic:user.pic, isKik:user.isKik});
                   io.sockets.socket(getSocketById(socket.id)).emit('clear');
                   socket.emit('friend connect',{username:host.user, pic:user.pic, isKik:user.isKik});
+                  currentNumSessions++;
+                  totalNumSessions++;
                 }else{
                   socket.emit('error friend', {username:user.targetUser});
                 }
@@ -99,6 +106,9 @@ io.sockets.on('connection', function (socket) {
         console.log(sessions);
         console.log('current number of users :'+currentClients);
         console.log('total number ever :'+totalClients);
+        console.log('current of sessions :'+currentNumSessions);
+        console.log('total number sessions ever :'+totalNumSessions);
+
 
         socket.on('push', function (data) {
             io.sockets.socket(getSocketById(socket.id)).emit("update", data);
@@ -116,6 +126,7 @@ io.sockets.on('connection', function (socket) {
               numberOfUsers=0;
               session=[];
             }else{
+              currentNumSessions--;
               removeSessionById(socket.id);
             }
         });

@@ -7,7 +7,7 @@ App.populator('home', function (page) {
 
       var randomId = 'Anonymous_'+Math.random().toString(36).substr(2, 5);
 
-
+      var hadPermission = kik.hasPermission();
 
 
       page.addEventListener('appShow', function () {
@@ -29,12 +29,15 @@ App.populator('home', function (page) {
             if ( !user ) {
               mixpanel.track('Decline Link to Kik',{'page':'home'});
             } else {
-              mixpanel.track('Accept Link to Kik',{'page':'home'});
               if(firstTime){
                   mixpanel.alias(user.username);
                   mixpanel.people.set(user);
               }else{
                   mixpanel.identify(user.username);
+              }
+
+              if(!hadPermission){
+                  mixpanel.track('Accept Link to Kik',{'page':'home'});
               }
 
               App.load('session',{'username':user.username, 'pic':user.pic,'isKik':true, 'invited':false, 'targetSocket':null, 'firstTime':firstTime});

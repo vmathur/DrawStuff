@@ -15,11 +15,11 @@
     			mixpanel.track('Decline Link to Kik',{'page':'invite'});
     			App.load('home');
     		}else{
-    			mixpanel.track('Accept Link to Kik',{'page':'invite'});
     			App.load('session',{username:user.username, isKik:true, invited:true, targetUser:cards.kik.message.targetUser});
     			if(hadPermission){
     				mixpanel.people.identify(user.username);
     			}else{
+    				mixpanel.track('Accept Link to Kik',{'page':'invite'});
     				mixpanel.alias(user.username);
 					mixpanel.people.set(user);
     			}
