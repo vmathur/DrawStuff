@@ -51,8 +51,10 @@ function Canvas(page){
         context.beginPath();
         context.fillStyle = "#000000";
         context.strokeStyle = "#000000";
-        context.arc(x,y,1,0,Math.PI*2,false);
-        context.fill();
+        //context.arc(x,y,1,0,Math.PI*2,false);
+        //context.fill();
+        context.moveTo(x, y-0.2);
+        context.lineTo(x, y);
         context.stroke();
         context.closePath();
     }
