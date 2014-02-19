@@ -27,8 +27,9 @@ App.populator('home', function (page) {
 
         kik.getUser(function (user) {
             if ( !user ) {
+              mixpanel.track('Decline Link to Kik',{'page':'home'});
             } else {
-
+              mixpanel.track('Accept Link to Kik',{'page':'home'});
               if(firstTime){
                   mixpanel.alias(user.username);
                   mixpanel.people.set(user);

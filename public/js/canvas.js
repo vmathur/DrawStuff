@@ -104,18 +104,23 @@ function Canvas(page){
         });
     }
 
-    function upload(photos){
+    function upload(photo){
         var img = new Image;
-        img.src = photos;
+        img.src = photo;
+        var height = img.height;
+        var width  = img.width;
+        var hscale  = 300/height;
+        var wscale  = 300/width;
 
-        updateImage(img);
-        var drawing = {'type':'image','image':img};
-        $canvas.trigger('draw', {'drawing':drawing});
+
+        updateImage(img,1,1);
     }
 
-    function updateImage(img){
+    function updateImage(img,hscale,wscale){
         img.onload = function(){
+            // c.getContext("2d").scale( hscale, wscale );
             c.getContext("2d").drawImage(img,0,0); // Or at whatever offset you like
+            // c.getContext("2d").scale( 1/hscale, 1/wscale );
         };
     }
 
