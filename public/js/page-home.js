@@ -7,6 +7,13 @@ App.populator('home', function (page) {
 
       var randomId = 'Anonymous_'+Math.random().toString(36).substr(2, 5);
 
+
+
+
+      page.addEventListener('appShow', function () {
+        mixpanel.track("Landed on Home");
+      });
+
       $anonSignIn.on('click', function(){
         //TODO make pic a silouette of a dude
 
@@ -21,6 +28,14 @@ App.populator('home', function (page) {
         kik.getUser(function (user) {
             if ( !user ) {
             } else {
+
+              if(firstTime){
+                  mixpanel.alias(user.username);
+                  mixpanel.people.set(user);
+              }else{
+                  mixpanel.identify(user.username);
+              }
+
               App.load('session',{'username':user.username, 'pic':user.pic,'isKik':true, 'invited':false, 'targetSocket':null, 'firstTime':firstTime});
               firstTime=false;
             }

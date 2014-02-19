@@ -26,6 +26,7 @@ App.populator('session', function (page,user) {
       }
   
       if(user.isKik && !user.invited){
+        mixpanel.track("Started Friend Session");
         kik.send({
             title     : 'Draw stuff',
             text      : 'Come draw stuff with me!',
@@ -33,7 +34,11 @@ App.populator('session', function (page,user) {
             noForward :  true,
             data      : {'targetUser':user.username}
         });
+      }else{
+          mixpanel.track("Started Anon Session");
       }
+
+
 
       console.log('username is '+user.username);
 
@@ -49,6 +54,7 @@ App.populator('session', function (page,user) {
 
         $chat.show();
         $chat.on('click',function(){
+          mixpanel.track("Chat Clicked");
           startChat(user, friend);
         });
       });
@@ -60,6 +66,7 @@ App.populator('session', function (page,user) {
 
       $canvas.on('clear', function(event, data){
           socket.emit('clear');
+          //mixpanel.track("Clear clicked");
       });      
 
       $back.on('click',function(){
@@ -67,10 +74,12 @@ App.populator('session', function (page,user) {
       });
 
       $save.on('click',function(){
+        mixpanel.track("Save Clicked");
         canvas.save();
       });
 
       $upload.on('click',function(){
+        mixpanel.track("Upload Clicked");
         kik.photo.get(function (photos) {
           if ( !photos ) {
               // action cancelled by user
@@ -123,6 +132,7 @@ App.populator('session', function (page,user) {
 
       function leave(){
         console.log('leaving');
+        mixpanel.track("Left Session");
         socket.disconnect();
         socket.removeAllListeners();
         socket.socket.removeAllListeners();

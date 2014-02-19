@@ -21,7 +21,7 @@
 }
 
 .app-content .login{
-	background: #4f86f0;		
+	background: #6078ff;		
 	color: white;
 	height: 200px;
 	margin-left: 3%;
@@ -82,4 +82,24 @@
 
 }
 
+.app-content .app-button .button-text {
 
+}
+
+.app-content .app-button .button-image {
+	height: 150px;
+	width: 200px;
+	background-size: 100%;
+	-webkit-background-size: 100%;
+	background-repeat: no-repeat;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+
+.app-content .app-button .button-image.kikfriends-pic {
+	background-image: url(/img/kikfriend.png?inline=1);
+}
+
+.app-content .app-button .button-image.randoms-pic {
+	background-image: url(/img/anon.png?inline=1);
+}

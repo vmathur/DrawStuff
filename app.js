@@ -28,6 +28,7 @@ app.configure('development', function(){
 app.get('/', routes.index);
 
 var totalClients =0;
+var currentClients =0;
 var numberOfUsers = 0;
 var sessionid = 0;
 var session =[];
@@ -40,6 +41,7 @@ io.sockets.on('connection', function (socket) {
         console.log('user '+user.username+' logged in!');
         
         totalClients++;
+        currentClients++;
 
         var client = {'user':user.username, 'pic':user.pic,'socketid':socket.id, 'sessionid':sessionid, 'isKik':user.isKik};
         clients.push(client);
@@ -95,6 +97,8 @@ io.sockets.on('connection', function (socket) {
 
         console.log(sessions.length +' sessions:')
         console.log(sessions);
+        console.log('current number of users :'+currentClients);
+        console.log('total number ever :'+totalClients);
 
         socket.on('push', function (data) {
             io.sockets.socket(getSocketById(socket.id)).emit("update", data);
@@ -106,6 +110,7 @@ io.sockets.on('connection', function (socket) {
 
         socket.on('disconnect', function() {
             console.log('user '+user.username+' disconnected!');
+            currentClients--;
             io.sockets.socket(getSocketById(socket.id)).emit('friend disconnected', {username:user.username});
             if(session.length===1){
               numberOfUsers=0;
