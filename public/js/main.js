@@ -1,11 +1,13 @@
 (function (App, Canvas) {
 
+
 	if (cards.browser && cards.browser.setOrientationLock) {
 		cards.browser.setOrientationLock('portrait');
 	}
 	
 	if(cards.kik && cards.kik.message && cards.kik.message.targetUser){
 		console.log('invited');
+        mixpanel.track('Launched Draw Stuff',{'page':'invite'});
         mixpanel.track('Invited by Friend');
 
 		var hadPermission = kik.hasPermission();
@@ -26,6 +28,7 @@
     		}
     	});
 	}else{
+        mixpanel.track('Launched Draw Stuff',{'page':'home'});
 		App.load('home');
 	}
 
