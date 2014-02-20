@@ -78,11 +78,11 @@ App.populator('session', function (page,user) {
       });
 
       $upload.on('click',function(){
-        mixpanel.track("Upload Clicked");
         kik.photo.get(function (photos) {
           if ( !photos ) {
               // action cancelled by user
           } else {
+            mixpanel.track("Upload Clicked",{'image',photos[0]});
             canvas.upload(photos[0]);
             socket.emit('push', { 'drawing': {'type':'image','image':photos[0]},'user':user.username });
           }
