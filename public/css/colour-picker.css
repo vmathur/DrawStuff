@@ -1,0 +1,146 @@
+.color_picker{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	z-index: 1000;
+	display: none;
+}
+
+.color_picker.show{
+	opacity: 1;
+	display: block;
+}
+
+.color_picker .canvascover{
+	position: relative;
+	height: 100%;
+	background: rgba(0,0,0,0.3);
+	bottom: 100px;
+}
+
+.color_popup {
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#edeef1), color-stop(100%,#d6d9de));
+    background-image: -webkit-linear-gradient(top, #edeef1, #d6d9de);
+    background-image: linear-gradient(top, #edeef1, #d6d9de);
+    border-top: 1px solid #B5BAC3;
+    border-bottom: 1px solid #818287;
+    padding: 6px 0px;
+}
+
+.color_popup .color_popup_color {
+	background: #EDEEF1;
+	width: 32px;
+	height: 32px;
+	margin: 5px 5.75px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	-webkit-border-radius: 18px;
+	border-radius: 18px;
+	-webkit-box-shadow: 0 2px 2px rgba(255, 255, 255, 0.5);
+	box-shadow: 0 2px 2px rgba(255, 255, 255, 0.5);
+	float: left;
+}
+
+.color_popup .color_popup_color.green { background: #E6B82A; }
+.color_popup .color_popup_color.turquoise { background: #E1852B; }
+.color_popup .color_popup_color.purple { background: #D92020; }
+.color_popup .color_popup_color.pink { background: #6725CA; }
+.color_popup .color_popup_color.orange { background: #2840D2; }
+.color_popup .color_popup_color.light_green { background: #55AE2A; }
+.color_popup .color_popup_color.black { background: #5C4D45; }
+
+.color_popup .color_popup_color.gray { background: #F0DE46; }
+.color_popup .color_popup_color.light_pink { background: #D96125; }
+.color_popup .color_popup_color.yellow { background: #DA325A; }
+.color_popup .color_popup_color.blue { background: #A028C7; }
+.color_popup .color_popup_color.dark_red { background: #32A7CE; }
+.color_popup .color_popup_color.light_brown { background: #B6CA2F; }
+.color_popup .color_popup_color.dark_orange { background: #978982; }
+
+.color_popup .color_popup_color.dark_green { background: #FFF; }
+.color_popup .color_popup_color.nice_blue { background: #000; }
+.color_popup .color_popup_color.darkerer_grey { background: #353535; }
+.color_popup .color_popup_color.darker_grey { background: #6C6C6C; }
+.color_popup .color_popup_color.dark_grey { background: #9D9D9D; }
+.color_popup .color_popup_color.light_grey { background: #D0D0D0; }
+.color_popup .color_popup_color.tan { background: #CBBFB9; }
+
+.app-dialog {
+	padding-bottom: 0px;
+	background: #fff;
+
+	/* everybody is android-style with Points! */
+	bottom: 50%;
+	margin: 0 10%;
+	width: 80%;
+	-webkit-transform: translate3d(0,50%,0);
+	transform: translate3d(0,50%,0);
+}
+.app-ios .app-dialog {
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+}
+
+.app-dialog .title {
+	color: #26272e;
+}
+
+/*.app-dialog .text {
+	color: #26272e;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}*/
+
+.app-dialog .button {
+	color: #fff;
+/*	background-color: #F1B82D;
+*/}
+.app-dialog .button:last-child {
+	-webkit-border-radius: 0 0 8px 8px;
+	border-radius: 0 0 8px 8px;
+}
+
+
+/* earnings dialog specific */
+
+.app-dialog.palette .title {
+	color: #26272e;
+}
+
+.app-dialog.palette .colour-list {
+	margin-top: 30px;
+}
+
+.app-dialog.palette .colour {
+	width: 116px;
+	position: relative;
+	left: 50%;
+	margin-left: -58px;
+}
+
+/*
+.app-dialog.palette .transaction {
+	width: 116px;
+	position: relative;
+	left: 50%;
+	margin-left: -58px;
+}
+
+.app-dialog.palette .points {
+	color: #F1B82D;
+	font-size: 22px;
+	float: left;
+	width: 50px;
+	text-align: center;
+	line-height: 56px;
+	padding-left: 6px;
+}
+
+.app-dialog.palette .icon {
+	width: 44px;
+	height: 44px;
+	margin: 6px;
+	float: left;
+	-webkit-background-size: 100%;
+	background-size: 100%;
+}*/
