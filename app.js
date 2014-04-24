@@ -59,7 +59,7 @@ io.sockets.on('connection', function (socket) {
               console.log('only user in session...');
             }else if(numberOfUsers==2){
               sessions.push(session);
-              socket.emit('friend connect',{username:session[0].user, pic:session[0].pic, iskik:session[0].isKik});
+              socket.emit('friend connect',{username:session[0].user, pic:session[0].pic, iskik:false});
               sessionid++;
               session = [];
               numberOfUsers=0;
@@ -90,9 +90,9 @@ io.sockets.on('connection', function (socket) {
                   kikSession.push(client);
                   sessions.push(kikSession);
                   sessionid++;
-                  io.sockets.socket(getSocketById(socket.id)).emit('friend connect',{username:user.username, pic:user.pic, isKik:user.isKik});
+                  io.sockets.socket(getSocketById(socket.id)).emit('friend connect',{username:user.username, pic:user.pic, isKik:true});
                   io.sockets.socket(getSocketById(socket.id)).emit('clear');
-                  socket.emit('friend connect',{username:host.user, pic:user.pic, isKik:user.isKik});
+                  socket.emit('friend connect',{username:host.user, pic:user.pic, isKik:true});
                   currentNumSessions++;
                   totalNumSessions++;
                 }else{

@@ -49,10 +49,6 @@ function Canvas(page){
     function dot(x,y) {
         var context = getCanvas().getContext("2d");
         context.beginPath();
-        context.fillStyle = "#000000";
-        context.strokeStyle = "#000000";
-        //context.arc(x,y,1,0,Math.PI*2,false);
-        //context.fill();
         context.moveTo(x, y-0.2);
         context.lineTo(x, y);
         context.stroke();
@@ -62,7 +58,6 @@ function Canvas(page){
     function line(x1,y1,x2,y2){
         var context = getCanvas().getContext("2d");
         context.beginPath();
-        //context.fillStyle = "#000000";
         context.moveTo(x1,y1);
         context.lineTo(x2,y2);
         context.stroke();
@@ -150,6 +145,7 @@ function Canvas(page){
         
         context.lineCap = 'round';
         context.lineJoin = 'round';
+        context.lineWidth = 10;
   
         document.ontouchmove = function(e){ e.preventDefault(); }
   
@@ -159,8 +155,10 @@ function Canvas(page){
             lastx = event.touches[0].clientX - offsetX;
             lasty = event.touches[0].clientY - offsetY;
             
-            var lineColour = setColour("#000000");
-            var lineWidth = setWidth(8);
+            context.strokeStyle
+
+            var lineColour =  context.strokeStyle;
+            var lineWidth = context.lineWidth;
 
             dot(lastx,lasty);
 
@@ -174,8 +172,8 @@ function Canvas(page){
             var newx = event.touches[0].clientX - offsetX;
             var newy = event.touches[0].clientY - offsetY;
 
-            var lineColour = setColour("#000000");
-            var lineWidth = setWidth(8);
+            var lineColour =  context.strokeStyle;
+            var lineWidth = context.lineWidth;
 
             line(lastx,lasty, newx,newy);
 

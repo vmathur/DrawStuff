@@ -1,4 +1,5 @@
-.color_picker{
+
+.color_picker, .brush_picker, .thickness_picker {
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -7,16 +8,36 @@
 	display: none;
 }
 
-.color_picker.show{
+.color_picker.enhanced, .brush_picker.enhanced, .thickness_picker.enhanced {
+	opacity: 0;
+	-webkit-transition-property: opacity;
+	-webkit-transition-duration: 0.2s;
+	-webkit-transition-delay: 0s;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-delay: 0s;
+	display: none;
+}
+
+.color_picker.show, .brush_picker.show, .thickness_picker.show {
 	opacity: 1;
 	display: block;
 }
 
-.color_picker .canvascover{
+.color_picker .canvascover, .brush_picker .canvascover, .thickness_picker .canvascover {
 	position: relative;
 	height: 100%;
 	background: rgba(0,0,0,0.3);
 	bottom: 100px;
+}
+
+.picker_popup {
+	background: #E6E6E6;
+	border-bottom: 1px solid black;
+	margin: 0;
+	position: absolute;
+	bottom: 50px;
+	width: 100%;
 }
 
 .color_popup {
@@ -65,82 +86,36 @@
 .color_popup .color_popup_color.light_grey { background: #D0D0D0; }
 .color_popup .color_popup_color.tan { background: #CBBFB9; }
 
-.app-dialog {
-	padding-bottom: 0px;
-	background: #fff;
+/* Android Styles */
 
-	/* everybody is android-style with Points! */
-	bottom: 50%;
-	margin: 0 10%;
-	width: 80%;
-	-webkit-transform: translate3d(0,50%,0);
-	transform: translate3d(0,50%,0);
-}
-.app-ios .app-dialog {
-	-webkit-border-radius: 8px;
-	border-radius: 8px;
-}
-
-.app-dialog .title {
-	color: #26272e;
-}
-
-/*.app-dialog .text {
-	color: #26272e;
-	margin-top: 20px;
-	margin-bottom: 20px;
-}*/
-
-.app-dialog .button {
-	color: #fff;
-/*	background-color: #F1B82D;
-*/}
-.app-dialog .button:last-child {
-	-webkit-border-radius: 0 0 8px 8px;
-	border-radius: 0 0 8px 8px;
+@media (min-width: 360px) and (max-width: 720px) {
+	.canvas-container {
+		width: 340px;
+		height: 340px;
+	}
+	.canvas-overlay {
+		width: 340px;
+		height: 340px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-size: 100% 100%;
+	}
+	.color_popup .color_popup_color {
+		width: 38px;
+		height: 38px;
+		margin: 4px 5.70px;
+		-webkit-border-radius: 19px;
+		border-radius: 19px;
+	}
 }
 
-
-/* earnings dialog specific */
-
-.app-dialog.palette .title {
-	color: #26272e;
+@media (min-width: 361px) and (max-width: 720px) {
+	.color_popup .color_popup_color {
+		width: 42px;
+		height: 42px;
+		margin: 4px 5.4px;
+		-webkit-border-radius: 21px;
+		border-radius: 21px;
+	}
 }
-
-.app-dialog.palette .colour-list {
-	margin-top: 30px;
-}
-
-.app-dialog.palette .colour {
-	width: 116px;
-	position: relative;
-	left: 50%;
-	margin-left: -58px;
-}
-
-/*
-.app-dialog.palette .transaction {
-	width: 116px;
-	position: relative;
-	left: 50%;
-	margin-left: -58px;
-}
-
-.app-dialog.palette .points {
-	color: #F1B82D;
-	font-size: 22px;
-	float: left;
-	width: 50px;
-	text-align: center;
-	line-height: 56px;
-	padding-left: 6px;
-}
-
-.app-dialog.palette .icon {
-	width: 44px;
-	height: 44px;
-	margin: 6px;
-	float: left;
-	-webkit-background-size: 100%;
-	background-size: 100%;
-}*/

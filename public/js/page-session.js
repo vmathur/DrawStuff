@@ -5,17 +5,18 @@ App.populator('session', function (page,user) {
       var canvas  = Canvas(page);
       var $status = $(page).find('.status');
       // var $friendpic = $(page).find('.friendpic');
-      var $upload   = $(page).find('.thickness_picker');
-      var $save     = $(page).find('.colour_picker');
+      var $eraser   = $(page).find('.eraser');
+      var $upload   = $(page).find('.upload');
+      var $save     = $(page).find('.save');
       var $chat     = $(page).find('.chat');
       $chat.hide();
       var $back   = $(page).find('.back');
 
-      var url   = 'http://drawstuffz.herokuapp.com';
-      //var url =  'http://10.22.213.59:3000';
-      //var url = 'http://10.10.20.172:3000/';
-      //var url = 'http://192.168.0.19:3000/';
+      // var url   = 'http://drawstuffz.herokuapp.com';
+      var url = 'http://10.10.20.172:3000/';
+      var TOUCHSTART = 'touchstart';
 
+      //server connection
       var socket;
 
       if(!user.firstTime){
@@ -39,9 +40,71 @@ App.populator('session', function (page,user) {
       }
 
 
+      //colours
+      $(".color", page).bind(TOUCHSTART, function(){
+          toggleVisibility($(".color_picker"),true);
+      });
 
-      console.log('username is '+user.username);
+      $(".color_popup_color", page).bind(TOUCHSTART, function(){
+        var color = rgb2hex($(this).css("background-color"));
+        canvas.setColour(color);
+        toggleVisibility($(".color_picker"),false);
+      });
 
+      //thickness
+      //Thickness Picker Button
+      // $(".eraser", page).bind(TOUCHSTART, function(e){
+      //   toggleVisibility($(".thickness_picker"),true);
+      // });
+
+      // //Thickness Picker Mask ( click catcher to hide on any touch on the screen )
+      // $(".thickness_picker", page).bind(TOUCHSTART, function(e){
+      //   e.preventDefault();
+      //   e.stopPropagation();
+      //   toggleVisibility($(".thickness_picker"),false);
+      // });
+
+      // $(".thickness_picker_tabs .thinest", page).bind(TOUCHSTART, function(){
+      //   canvas.setWidth(1);
+      //   setThicknessUI(Sketch.THICKNESS_THINEST, "thinest");
+      // });
+
+      // $(".thickness_picker_tabs .thin", page).bind(TOUCHSTART, function(){
+      //   canvas.setWidth(5);
+      //   setThicknessUI(Sketch.THICKNESS_THIN, "thin");
+      // });
+
+      // $(".thickness_picker_tabs .normal", page).bind(TOUCHSTART, function(){
+      //   canvas.setWidth(10);
+      //   setThicknessUI(Sketch.THICKNESS_NORMAL, "normal");
+      // });
+
+      // $(".thickness_picker_tabs .thick", page).bind(TOUCHSTART, function(){
+      //   canvas.setWidth(15);
+      //   setThicknessUI(Sketch.THICKNESS_THICK, "thick");
+      // });
+
+      // $(".thickness_picker_tabs .thickest", page).bind(TOUCHSTART, function(){
+      //   canvas.setWidth(20);
+      //   setThicknessUI(Sketch.THICKNESS_THICKEST, "thickest");
+      // });
+
+      function toggleVisibility(elem,show) {
+        if ( !show ) {
+          elem.hide();
+        }else {
+          elem.show();
+        }
+      }
+
+      //exit colour picker
+      $(".color_picker", page).bind(TOUCHSTART, function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        toggleVisibility($(".color_picker"),false);
+      });
+
+    
       socket.on('connect', function () {
           console.log('successfully connected to '+url);
           socket.emit('login', user);
@@ -52,7 +115,10 @@ App.populator('session', function (page,user) {
         $status.text('Drawing with '+friend.username);
         // $friendpic.update(user.pic);
 
-        $chat.show();
+        if(friend.isKik){
+          $chat.show();
+        }
+ 
         $chat.on('click',function(){
           mixpanel.track("Chat Clicked");
           startChat(user, friend);
@@ -76,6 +142,13 @@ App.populator('session', function (page,user) {
         mixpanel.track("Save Clicked");
         canvas.save();
       });
+
+
+      $(page).on('appShow', function () { 
+        var uploadOffset = parseInt($upload.css("margin-right"))+parseInt($(".save").css("width"));
+        $upload.css("margin-right",uploadOffset*2);        
+      });
+
 
       $upload.on('click',function(){
         kik.photo.get(function (photos) {
@@ -184,6 +257,15 @@ App.populator('session', function (page,user) {
             });
           }
       }
+
+      function rgb2hex(rgb) {
+        rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+        function hex(x) {
+          return ("0" + parseInt(x,0).toString(16)).slice(-2);
+        }
+        return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+      }
+
 
 
       

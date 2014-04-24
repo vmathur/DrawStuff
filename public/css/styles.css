@@ -9,7 +9,28 @@
 	background-size: cover;
 }*/
 
+.save{
+	background-image: url(/img/save.png?inline=1);
+	background-size: cover;
+	width: 30px;
+}
 
+.upload{
+	background-image: url(/img/upload.png?inline=2);
+	background-size: cover;
+	width:30px;
+}
+
+.partner .status {
+	height: 23px;
+	line-height: 23px;
+}
+.chat{
+	float: right;
+	width: 50px;
+	background-image: url(/img/chat2.png?inline=2);
+	background-size: cover;
+}
 .app-content{
 	background: #F0F0F0 ;
 }
