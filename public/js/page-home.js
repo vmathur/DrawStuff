@@ -11,7 +11,7 @@ App.populator('home', function (page) {
 
 
       page.addEventListener('appShow', function () {
-        mixpanel.track("Landed on Home");
+        mixpanel.track("Landed on Home", {"colors":true});
       });
 
       $anonSignIn.on('click', function(){
