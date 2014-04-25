@@ -49,45 +49,19 @@ App.populator('session', function (page,user) {
         var color = rgb2hex($(this).css("background-color"));
         canvas.setColour(color);
         toggleVisibility($(".color_picker"),false);
+        toggleHighlight($(".color"),$(".eraser"));
+      });
+      //exit colour picker
+      $(".color_picker", page).bind(TOUCHSTART, function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        toggleVisibility($(".color_picker"),false);
       });
 
-      //thickness
-      //Thickness Picker Button
-      // $(".eraser", page).bind(TOUCHSTART, function(e){
-      //   toggleVisibility($(".thickness_picker"),true);
-      // });
-
-      // //Thickness Picker Mask ( click catcher to hide on any touch on the screen )
-      // $(".thickness_picker", page).bind(TOUCHSTART, function(e){
-      //   e.preventDefault();
-      //   e.stopPropagation();
-      //   toggleVisibility($(".thickness_picker"),false);
-      // });
-
-      // $(".thickness_picker_tabs .thinest", page).bind(TOUCHSTART, function(){
-      //   canvas.setWidth(1);
-      //   setThicknessUI(Sketch.THICKNESS_THINEST, "thinest");
-      // });
-
-      // $(".thickness_picker_tabs .thin", page).bind(TOUCHSTART, function(){
-      //   canvas.setWidth(5);
-      //   setThicknessUI(Sketch.THICKNESS_THIN, "thin");
-      // });
-
-      // $(".thickness_picker_tabs .normal", page).bind(TOUCHSTART, function(){
-      //   canvas.setWidth(10);
-      //   setThicknessUI(Sketch.THICKNESS_NORMAL, "normal");
-      // });
-
-      // $(".thickness_picker_tabs .thick", page).bind(TOUCHSTART, function(){
-      //   canvas.setWidth(15);
-      //   setThicknessUI(Sketch.THICKNESS_THICK, "thick");
-      // });
-
-      // $(".thickness_picker_tabs .thickest", page).bind(TOUCHSTART, function(){
-      //   canvas.setWidth(20);
-      //   setThicknessUI(Sketch.THICKNESS_THICKEST, "thickest");
-      // });
+      function toggleHighlight(elemAdd,elemRemove){
+        elemAdd.css("box-shadow","-2px 0 0 #000,2px 0 0 #000,0 -2px 0 #000,0 2px 0 #000");
+        elemRemove.css("box-shadow","");
+      }
 
       function toggleVisibility(elem,show) {
         if ( !show ) {
@@ -96,14 +70,6 @@ App.populator('session', function (page,user) {
           elem.show();
         }
       }
-
-      //exit colour picker
-      $(".color_picker", page).bind(TOUCHSTART, function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        toggleVisibility($(".color_picker"),false);
-      });
-
     
       socket.on('connect', function () {
           console.log('successfully connected to '+url);
@@ -131,7 +97,6 @@ App.populator('session', function (page,user) {
 
       $canvas.on('clear', function(event, data){
           socket.emit('clear');
-          //mixpanel.track("Clear clicked");
       });      
 
       $back.on('click',function(){
@@ -143,12 +108,15 @@ App.populator('session', function (page,user) {
         canvas.save();
       });
 
+      $eraser.on('click',function(){
+        canvas.setColour('ffffff');
+        toggleHighlight($(".eraser"),$(".color"));
+      });
 
       $(page).on('appShow', function () { 
         var uploadOffset = parseInt($upload.css("margin-right"))+parseInt($(".save").css("width"));
         $upload.css("margin-right",uploadOffset*2);        
       });
-
 
       $upload.on('click',function(){
         kik.photo.get(function (photos) {
@@ -171,7 +139,6 @@ App.populator('session', function (page,user) {
           else{
               canvas.update(data.drawing)
           }
- 
       });
 
       socket.on('clear',function(){
@@ -265,8 +232,5 @@ App.populator('session', function (page,user) {
         }
         return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
       }
-
-
-
       
   });

@@ -1,14 +1,3 @@
-
-/*.app-title {
-	background: CE0F41;
-}*/
-
-
-/*.chat{
-	background-image: url(/img/chat2.png?inline=1);
-	background-size: cover;
-}*/
-
 .save{
 	background-image: url(/img/save.png?inline=1);
 	background-size: cover;
@@ -28,7 +17,7 @@
 .chat{
 	float: right;
 	width: 50px;
-	background-image: url(/img/chat2.png?inline=2);
+	background-image: url(/img/chat5.png?inline=2);
 	background-size: cover;
 }
 .app-content{
@@ -56,15 +45,6 @@
 	height: inherit;
 }
 
-#kikfriends{
-/*	background-image: url(/img/kikfriends_small.png?inline=1);
-	background-size: cover;
-}
-
-.app-button .login .kik-sign-in{
-/*	background-image: url(/img/kikfriend.png?inline=1);
-*/}
-
 .toolbar{
 	border-radius: 50px;
 	padding-top: 10px;
@@ -79,7 +59,7 @@
 	background: #4f86f0;		
 	color: white;
 	float:left;
-	margin-left: 3%;
+	margin-left: 2%;
 	height: 100%;
 	width: 30%;
 	border-radius: 50px;
@@ -118,9 +98,9 @@
 }
 
 .app-content .app-button .button-image.kikfriends-pic {
-	background-image: url(/img/kikfriend.png?inline=1);
+	background-image: url(/img/kikfriend2.png?inline=1);
 }
 
 .app-content .app-button .button-image.randoms-pic {
-	background-image: url(/img/anon.png?inline=1);
+	background-image: url(/img/anon2.png?inline=1);
 }
