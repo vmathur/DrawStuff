@@ -49,6 +49,7 @@ App.populator('session', function (page,user) {
         var color = rgb2hex($(this).css("background-color"));
         canvas.setColour(color);
         toggleVisibility($(".color_picker"),false);
+        canvas.setWidth(10);
         toggleHighlight($(".color"),$(".eraser"));
       });
       //exit colour picker
@@ -110,6 +111,7 @@ App.populator('session', function (page,user) {
 
       $eraser.on('click',function(){
         canvas.setColour('ffffff');
+        canvas.setWidth(20);
         toggleHighlight($(".eraser"),$(".color"));
       });
 
