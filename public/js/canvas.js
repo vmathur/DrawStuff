@@ -92,13 +92,15 @@ function Canvas(page){
 
     function save(){
         var dataURL = c.toDataURL();
-        kik.photo.saveToGallery(dataURL, function (status) {
-            if (status) {
-                console.log('save succeeded');
-            } else {
-                console.log('save failed');
-            }
-        });
+        if(kik && kik.enabled){
+            kik.photo.saveToGallery(dataURL, function (status) {
+                if (status) {
+                    console.log('save succeeded');
+                } else {
+                    console.log('save failed');
+                }
+            });
+        }
     }
 
     function upload(photo){
@@ -183,7 +185,27 @@ function Canvas(page){
             lastx = newx;
             lasty = newy;
         });
-        
+
+        canvas.addEventListener('mousemove', function(event) {
+            event.preventDefault();                 
+            
+            var newx = event.touches[0].clientX - offsetX;
+            var newy = event.touches[0].clientY - offsetY;
+
+            var lineColour =  context.strokeStyle;
+            var lineWidth = context.lineWidth;
+
+            line(lastx,lasty, newx,newy);
+
+            drawing = {'type':'line','line':{'x1':lastx,'y1':lasty,'x2':newx,'y2':newy},'colour':lineColour, 'width':lineWidth};
+            $canvas.trigger('draw', {'drawing':drawing});
+    
+            lastx = newx;
+            lasty = newy;
+        });
+                
+
+
         $clear.on('click',function(){
           clear();
           $canvas.trigger('clear');

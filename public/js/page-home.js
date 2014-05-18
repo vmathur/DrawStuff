@@ -7,8 +7,11 @@ App.populator('home', function (page) {
 
       var randomId = 'Anonymous_'+Math.random().toString(36).substr(2, 5);
 
-      var hadPermission = kik.hasPermission();
+      var hadPermission = false;
 
+      if (kik && kik.enabled){
+          hadPermission = kik.hasPermission();
+      }
 
       page.addEventListener('appShow', function () {
         mixpanel.track("Landed on Home", {"colors":true});
@@ -25,7 +28,8 @@ App.populator('home', function (page) {
       $kikSignIn.on('click', function(){
         var kikId = 'Kik_'+Math.random().toString(36).substring(7);
 
-        kik.getUser(function (user) {
+        if (kik && kik.enabled){
+          kik.getUser(function (user) {
             if ( !user ) {
               mixpanel.track('Decline Link to Kik',{'page':'home'});
             } else {
@@ -43,7 +47,12 @@ App.populator('home', function (page) {
               App.load('session',{'username':user.username, 'pic':user.pic,'isKik':true, 'invited':false, 'targetSocket':null, 'firstTime':firstTime});
               firstTime=false;
             }
-        });
+          });
+        }else{
+          var userAnom = {'username':randomId, 'pic':null, 'isKik':false, 'invited':false, 'targetUser':null, 'firstTime':firstTime};
+          App.load('session',userAnom);
+        }
+        
       });      
 
   });
