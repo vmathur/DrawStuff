@@ -186,25 +186,61 @@ function Canvas(page){
             lasty = newy;
         });
 
-        canvas.addEventListener('mousemove', function(event) {
-            event.preventDefault();                 
-            
-            var newx = event.touches[0].clientX - offsetX;
-            var newy = event.touches[0].clientY - offsetY;
+        var flag = false,
+        prevX = 0,
+        currX = 0,
+        prevY = 0,
+        currY = 0,
+        dot_flag = false;
+
+        //mouse events
+        canvas.addEventListener("mousemove", function (e) {
+            findxy('move', e)
+        }, false);
+        canvas.addEventListener("mousedown", function (e) {
+            findxy('down', e)
+        }, false);
+        canvas.addEventListener("mouseup", function (e) {
+            findxy('up', e)
+        }, false);
+        canvas.addEventListener("mouseout", function (e) {
+            findxy('out', e)
+        }, false);
+
+        function findxy(res, e) {
+            if (res == 'down') {
+                prevX = currX;
+                prevY = currY;
+                currX = e.clientX - offsetX;
+                currY = e.clientY - offsetY;
+
+                flag = true;
+                dot_flag = true;
+                if (dot_flag) {
+                    dot(currX,currY);
+                    dot_flag = false;
+                }
+            }
+            if (res == 'up' || res == "out") {
+                flag = false;
+            }
+            if (res == 'move') {
+                if (flag) {
+                    prevX = currX;
+                    prevY = currY;
+                    currX = e.clientX - offsetX;
+                    currY = e.clientY - offsetY;
+                    line(prevX,prevY,currX,currY);
+                }
+            }
 
             var lineColour =  context.strokeStyle;
             var lineWidth = context.lineWidth;
 
-            line(lastx,lasty, newx,newy);
-
-            drawing = {'type':'line','line':{'x1':lastx,'y1':lasty,'x2':newx,'y2':newy},'colour':lineColour, 'width':lineWidth};
+            drawing = {'type':'line','line':{'x1':prevX,'y1':prevY,'x2':currX,'y2':currY},'colour':lineColour, 'width':lineWidth};
             $canvas.trigger('draw', {'drawing':drawing});
-    
-            lastx = newx;
-            lasty = newy;
-        });
-                
 
+        }
 
         $clear.on('click',function(){
           clear();
